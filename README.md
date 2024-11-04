@@ -1,7 +1,3 @@
-# chatbot-langgraph
- Desafio tecnico Chatbot com langgraph
-
-
 
 ## Desafio - Python_Aprendizado Contínuo
 
@@ -38,3 +34,13 @@ uma excelente chance para enriquecer seu portfólio.<br> Se você já possui um 
 utiliza as tecnologias mencionadas, sinta-se à vontade para compartilhá-lo conosco, o que
 tornará a implementação deste desafio desnecessária.<br>
 Sua habilidade em refinar as respostas do modelo de lingua
+
+
+## checkin
+- interface- ok
+- docker - ok
+- langchain - ok
+- llm- ok
+- LangGraph - implementando
+- Base de dados vetorial - implementando
+- Documentação: - implementando
