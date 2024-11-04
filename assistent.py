@@ -4,10 +4,13 @@ from langchain_groq import ChatGroq
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 from typing_extensions import TypedDict
+from langgraph.checkpoint.memory import MemorySaver
 
 from config_env import set_env
 
 set_env()
+
+memory = MemorySaver()
 
 
 # estrutura do estado do chatbot
@@ -37,12 +40,14 @@ graph_builder.add_edge('chatbot', END)
 # apos o chatbot processar a entrada do usuario o grafo deve encerrar a execução
 
 # compila o grafo de estados configurado,tornando-o pronto para ser usado
-graph = graph_builder.compile()
+graph = graph_builder.compile(checkpointer=memory)
+
+config = {'configurable': {'thread_id': '1'}}
 
 
 def stream_graph_updates(user_input: str, st):
     # processa a entrada do usuaário, criando uma mensagem e passando pelo grafo
-    for event in graph.stream({'messages': [('user', user_input)]}):
+    for event in graph.stream({'messages': [('user', user_input)]}, config):
         # itera sobre os eventos gerados pelo evento,
         # exibe a  ultima mensagem da resposta do assistente
         for value in event.values():
