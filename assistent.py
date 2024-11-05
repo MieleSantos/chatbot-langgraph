@@ -35,8 +35,6 @@ class Agent:
         self.graph = self.graph_builder.compile(checkpointer=self.memory)
         self.config = {'configurable': {'thread_id': '1'}}
 
-    # definindo catbot que aceita um estado e retonra uma nova mensagem
-    # invocando o modelo
     def _create_prompt_template(self):  # noqa: PLR6301
         prompt = """
         Responsa as interacões do usuário com informações validas.
@@ -46,12 +44,25 @@ class Agent:
         return PromptTemplate.from_template(prompt)
 
     def chatbot(self, state: State):
+        """chatbot que aceita um estado e retorna uma nova mensagem
+            invocando o modelo
+        Args:
+            state (State): Estado do chatbot
+        Returns:
+            Dict: retultado do modelo
+        """
         messages = state['messages']
         input_question = self.prompt_template.format(q=messages)
         return {'messages': [self.model.invoke(input_question)]}
 
-    def stream_graph_update(self, user_input):
-        # processa a entrada do usuaário, criando uma mensagem e passando pelo grafo
+    def stream_graph_update(self, user_input: str):
+        """
+            Processa a entrada do usuaário, criando uma mensagem
+            e passando pelo grafo
+        Args:
+            user_input (str): entrada do usuário
+        """
+
         for event in self.graph.stream(
             {'messages': [('user', user_input)]}, self.config
         ):
@@ -59,9 +70,7 @@ class Agent:
             # exibe a  ultima mensagem da resposta do assistente
             for value in event.values():
                 msg = value['messages'][-1].content
-                # print('Assistant:', value['messages'][-1].content)
                 print('Assistant:', msg)
-                # msg = response.choices[0].message.content
 
                 self.st.session_state.messages.append({
                     'role': 'assistant',
