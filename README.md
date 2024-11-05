@@ -77,11 +77,4 @@ Com o container rodando, acesse o navegador **http://localhost:8501/** e interaj
 
 
 
-## checkin
-- interface- ok
-- docker - ok
-- langchain - ok
-- llm- ok
-- LangGraph - implementando
-- Base de dados vetorial - implementando
-- Documentação: - implementando
+Em desenvolvimento
