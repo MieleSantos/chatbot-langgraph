@@ -1,10 +1,10 @@
 from typing import Annotated
 
 from langchain_groq import ChatGroq
+from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 from typing_extensions import TypedDict
-from langgraph.checkpoint.memory import MemorySaver
 
 from config_env import set_env
 

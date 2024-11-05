@@ -36,6 +36,47 @@ tornará a implementação deste desafio desnecessária.<br>
 Sua habilidade em refinar as respostas do modelo de lingua
 
 
+## Tecnologias Utilizadas
+
+- **Python**: Linguagem principal para lógica do agente e cálculos.
+- **Poetry**: Para gerenciar as dependencias do projeto
+- **streamilt**: Para construir a interface do chatbot
+- **LangChain**: Framework para desenvolver aplicativos que utilizam modelos de linguagem.
+- **LangGraph**: Framework para na elaboração de worflows entre Agents e ferramentas, permitindo a criação de uma memória de estado a cada interação e a relação entre os itens presentes nesse tipo de fluxo, baseado em grafos.
+- **Groq API**: Utilizado para interpretar as consultas em linguagem natural e gerar respostas.
+- **Docker**: Para criar imagem do projeto
+
+## Estrutura do projeto
+- **main.py**: script principal responsável pela interface **[streamilt](https://streamlit.io/)**
+- **config_env.py**: script para seta a variavel de ambiente com a API_KEY
+- **assistent.py**:  script com a logica do chatbot
+- **docker-compose.yml/Dockerfile**: Para criação do container da aplicação
+
+
+## Instalação
+
+1. Clone este repositório:
+    ```bash
+    git clone https://github.com/MieleSantos/chatbot-langgraph.git
+    ```
+
+2. Na raiz do projeto, criei um arquivo **.env**  com a chave **API_kEY** da **GROQ**:
+    ```
+    API_KEY=<sua_api_key>
+    ```
+3. Com o **docker** instalado, no diretorio do projeto, execute:
+   ```bash
+   docker-compose up --build -d
+   ```
+
+
+### Execução do Chatbot
+
+Com o container rodando, acesse o navegador **http://localhost:8501/** e interaja com o chatbot
+
+
+
+
 ## checkin
 - interface- ok
 - docker - ok
